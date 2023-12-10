@@ -20,6 +20,8 @@ class State(object):
             (iterable)
         '''
         return np.array(self.data).flatten()
+        # return np.array(self.data, dtype=object).flatten()
+
 
     def get_data(self):
         return self.data

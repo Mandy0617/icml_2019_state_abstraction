@@ -3,7 +3,7 @@ Code for the 2019 ICML submission, "Learning State Abstractions for Transfer in 
 
 To run experiments:
 
-	> python run_learning_experiments_(domain).py
+	> python run_learning_experiment_(domain).py
 
 Where "(domain)" can be each of {puddle, lunar, cartpole}. To run the transfer experiments, open the file and set params['multitask'] to True.
 

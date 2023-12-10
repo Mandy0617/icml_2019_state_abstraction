@@ -18,3 +18,4 @@ class GymState(State):
         board = np.zeros(shape=[3, x_dim, y_dim])
         # print self.data, self.data.shape, x_dim, y_dim
         return self.data
+

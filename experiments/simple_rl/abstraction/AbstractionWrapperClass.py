@@ -46,6 +46,7 @@ class AbstractionWrapper(Agent):
             abstr_state = self.state_abstr.phi(ground_state)
         else:
             abstr_state = ground_state
+        print(f"abstractionWrapperClass: abstr_state {abstr_state} type {type(abstr_state)}")
 
 
         if self.action_abstr is not None:

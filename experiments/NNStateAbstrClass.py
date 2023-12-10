@@ -1,9 +1,15 @@
 # Python imports.
 import sys, os
+from simple_rl.tasks.gym import GymStateClass
 import numpy as np
 
 # Other imports.
-import tensorflow as tf
+# import tensorflow as tf
+
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+tf.compat.v1.disable_eager_execution()
+
 from simple_rl.mdp import State
 from simple_rl.abstraction.state_abs.StateAbstractionClass import StateAbstraction
 import numpy
@@ -29,7 +35,11 @@ class NNStateAbstr(StateAbstraction):
         Returns:
             state (simple_rl.State)
         '''
+        # print(f"state in phi: {state} type: {type(state)}")
+        # print(f"[state] is {[state]} type: {type([state])}")
+
         pr_z_given_s = list(self.abstraction_net.predict([state]))
+
         abstr_state_index = np.argmax(pr_z_given_s)
 
         return State(abstr_state_index)
@@ -42,4 +52,5 @@ class NNStateAbstr(StateAbstraction):
         Returns:
             (list): Contains probabilities. (index is z, value is prob of z given @state).
         '''
+        print(f"phi_pmf state: {type(state)} {state}")
         return self.abstraction_net.predict([state])[0]

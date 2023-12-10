@@ -30,8 +30,12 @@ class GymMDP(MDP):
         self.env_name = env_name
         self.env = gym.make(env_name)
         self.render = render
-        MDP.__init__(self, range(self.env.action_space.n), self._transition_func, self._reward_func, init_state=GymState(self.env.reset()))
-    
+        # MDP.__init__(self, range(self.env.action_space.n), self._transition_func, self._reward_func, init_state=GymState(self.env.reset()))
+        
+        #modify the returned state as array
+        MDP.__init__(self, range(self.env.action_space.n), self._transition_func, self._reward_func, init_state=GymState(self.env.reset()[0]))
+
+
     def get_parameters(self):
         '''
         Returns:
@@ -51,7 +55,10 @@ class GymMDP(MDP):
         Returns
             (float)
         '''
-        obs, reward, is_terminal, info = self.env.step(action)
+        print(f"GymMDP reward function: result of step {self.env.step(action)} type {type(self.env.step(action))}")
+        # obs, reward, is_terminal, info = self.env.step(action)
+        obs, reward, is_terminal, _, info = self.env.step(action)
+
 
         if self.render and (self.render_every_n_episodes == 0 or self.episode % self.render_every_n_episodes == 0):
             self.env.render()
@@ -72,7 +79,9 @@ class GymMDP(MDP):
         return self.next_state
 
     def reset(self):
-        self.env.reset()
+        # self.env.reset()
+        self.env.reset()[0]
+
         self.episode += 1
 
     def __str__(self):

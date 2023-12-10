@@ -1,14 +1,21 @@
 # Python imports.
 import sys
 import random
-import tensorflow as tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+tf.compat.v1.disable_eager_execution()
+
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 import gym
 
 # simple_rl imports.
 from simple_rl.tasks import GymMDP
 from simple_rl.abstraction.AbstractionWrapperClass import AbstractionWrapper
 from simple_rl.agents import QLearningAgent, LinearQAgent, FixedPolicyAgent
-from simple_rl.tasks import PuddleMDP
+# from simple_rl.tasks import PuddleMDP
 from simple_rl.run_experiments import run_agents_on_mdp, evaluate_agent
 
 # Local imports.
@@ -22,7 +29,7 @@ def main():
     # == Make Environment ==
     # ======================
     params={}
-    params['multitask']=False
+    params['multitask']= True#False
     params['env_name']="LunarLander-v2"
     params['obs_size']=8
     params['num_iterations_for_abstraction_learning']=500
@@ -30,7 +37,7 @@ def main():
     params['abstraction_network_hidden_layers']=2
     params['abstraction_network_hidden_nodes']=200
     params['num_samples_from_demonstrator']=10000
-    params['episodes']=200
+    params['episodes']= 500 #200
     params['steps']=1000
     params['num_instances']=5
     params['rl_learning_rate']=0.005
