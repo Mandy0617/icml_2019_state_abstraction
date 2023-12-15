@@ -22,7 +22,7 @@ import cartpole_pi_d as cpd
 
 def get_params():
     params={}
-    params['multitask']=True
+    params['multitask']= False #True
     params['obs_size']=4
     params['num_iterations_for_abstraction_learning']=500
     params['learning_rate_for_abstraction_learning']=0.001
@@ -30,7 +30,7 @@ def get_params():
     params['abstraction_network_hidden_nodes']=40
     params['num_samples_from_demonstrator']=5000
     params['episodes'] = 50
-    params['env_name']="CartPole-v0"
+    params['env_name']="CartPole-v1" #"CartPole-v0"
     params['steps']=200
     params['num_instances']=20
     params['rl_learning_rate']=0.001
@@ -46,7 +46,7 @@ def diff_sampling_distr_experiment():
     # Make MDP and Demo Policy.
     params = get_params()
     mdp_demo_policy_dict = {}
-    env = GymMDP(env_name='CartPole-v0')
+    env = GymMDP(env_name='CartPole-v1') #'CartPole-v0'
     obs_size = env.get_num_state_feats()
     mdp_demo_policy_dict[env] = cpd.expert_cartpole_policy
     demo_agent = FixedPolicyAgent(cpd.expert_cartpole_policy)
@@ -86,7 +86,7 @@ def main():
     params = get_params()
     num_test_mdps = 6 # 6 is max.
     mdp_demo_policy_dict = {}
-    env = GymMDP(env_name='CartPole-v0')
+    env = GymMDP(env_name='CartPole-v1') #'CartPole-v0'
     obs_size = env.get_num_state_feats()
     mdp_demo_policy_dict[env] = cpd.expert_cartpole_policy
 
@@ -121,7 +121,7 @@ def main():
         run_agents_lifelong([sa_agent, linear_agent], test_mdp, samples=params['num_instances'], episodes=params['episodes'], steps=params['steps'], verbose=False)
     else:
         # demo_agent = FixedPolicyAgent(cpd.expert_cartpole_policy)
-        run_agents_on_mdp([sa_agent, linear_agent], test_mdp, instances=params['num_instances'], episodes=params['episodes'], steps=params['steps'], verbose=False)
+        run_agents_on_mdp([sa_agent, linear_agent], test_mdp, instances=params['num_instances'], episodes=params['episodes'], steps=params['steps'], verbose=False,track_success=True,success_reward=0)
 
 if __name__ == "__main__":
     main()

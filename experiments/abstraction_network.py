@@ -43,16 +43,16 @@ class abstraction_network:
 			#self.optimizer = tf.train.GradientDescentOptimizer(learning_rate=self.learning_rate).minimize(self.loss)
 	def predict(self,samples):
 
-		print("predict function")
-		print(f"samples predict: {samples} type: {type(samples)}")
-		samples_np = numpy.array(samples, dtype=object)
-		print("Shape of samples:", samples_np.shape)
+		# print("predict function")
+		# print(f"samples predict: {samples} type: {type(samples)}")
+		# samples_np = numpy.array(samples, dtype=object)
+		# print("Shape of samples:", samples_np.shape)
 
-		# Print the shape of self.obs
-		print("Shape of self.obs:", self.obs.shape)
+		# # Print the shape of self.obs
+		# print("Shape of self.obs:", self.obs.shape)
 
-		# Print the expected shape of self.obs
-		print("Expected shape for self.obs:", self.obs.get_shape().as_list())
+		# # Print the expected shape of self.obs
+		# print("Expected shape for self.obs:", self.obs.get_shape().as_list())
 
 		# Ensure that the shapes match before running the session
 		# assert samples_np.shape[1] == self.obs.get_shape().as_list()[1], f"Dimension mismatch: samples_np.shape[1]={samples_np.shape[1]}, self.obs.shape[1]={self.obs.get_shape().as_list()[1]}"

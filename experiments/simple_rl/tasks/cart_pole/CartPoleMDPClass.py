@@ -30,7 +30,9 @@ class CartPoleMDP(MDP):
                 gamma=0.99,
                 tau=.02,
                 init_state_params=None,
-                name="Cart-Pendulum"):
+                name="Cart-Pole-v1"):
+
+                # name="Cart-Pendulum"):
 
         if init_state_params is None:
             init_state = CartPoleState(x=0, x_dot=0, theta=0, theta_dot=0)
@@ -51,7 +53,11 @@ class CartPoleMDP(MDP):
 
         #thresholds
         self.x_threshold = 2.4 #abs val of limit of x position of cart
-        self.theta_threshold = self._degrees_to_radians(20) #angle away from vertical before being considered terminal
+        # modified according to gym's implementation
+        self.theta_threshold = self._degrees_to_radians(12) #angle away from vertical before being considered terminal
+
+
+        # self.theta_threshold = self._degrees_to_radians(20) #angle away from vertical before being considered terminal
 
         #computed
         self.total_mass = (self.masscart + self.masspole)

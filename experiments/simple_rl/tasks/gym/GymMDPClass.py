@@ -55,7 +55,7 @@ class GymMDP(MDP):
         Returns
             (float)
         '''
-        print(f"GymMDP reward function: result of step {self.env.step(action)} type {type(self.env.step(action))}")
+        # print(f"GymMDP reward function: result of step {self.env.step(action)} type {type(self.env.step(action))}")
         # obs, reward, is_terminal, info = self.env.step(action)
         obs, reward, is_terminal, _, info = self.env.step(action)
 

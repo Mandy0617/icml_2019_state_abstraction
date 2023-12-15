@@ -26,6 +26,9 @@ class NNStateAbstr(StateAbstraction):
             abstraction_net (str): The name of the model.
         '''
         self.abstraction_net = abstraction_net
+        print(f"abstraction_net size: {self.abstraction_net.num_abstract_states}")
+        print(f"abstraction_net obs size: {self.abstraction_net.obs_size}")
+
 
     def phi(self, state):
         '''

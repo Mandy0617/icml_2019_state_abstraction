@@ -182,6 +182,7 @@ def collect_samples_from_demo_policy_random_s0_cartpole(mdp_demo_policy_dict, nu
     samples = []
     mdp = mdp_demo_policy_dict.keys()[0]
     demo_policy = mdp_demo_policy_dict[mdp]
+    print(f"demo_policy: {demo_policy} type: {type(demo_policy)}")
     cur_state = mdp.env.reset() #mdp.get_init_state()
     for _ in range(num_samples):
         best_action = demo_policy(cur_state)
@@ -276,7 +277,7 @@ def make_nn_sa(mdp_demo_policy_dict, sess, params, verbose=True, sample_type="ra
             samples_batch = collect_unif_random_samples_demo_policy_puddle(mdp_demo_policy_dict, params['num_samples_from_demonstrator'])
     elif params['env_name']=='LunarLander-v2' or params['env_name']=='LunarNoShaping-v0':
         samples_batch = collect_samples_from_demo_policy_random_s0_lunar(mdp_demo_policy_dict, params['num_samples_from_demonstrator'])
-    elif params['env_name']=='CartPole-v0':
+    elif params['env_name']=='CartPole-v1': #'CartPole-v0'
         if sample_type == "demo":
             # Sample from demo policy.
             samples_batch = collect_samples_from_demo_policy_random_s0_cartpole(mdp_demo_policy_dict, params['num_samples_from_demonstrator'])

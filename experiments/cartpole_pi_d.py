@@ -5,14 +5,18 @@ import numpy
 
 
 # load json and create model
-json_file = open('../mac/learned_policy/CartPole-v0.json', 'r')
+# json_file = open('../mac/learned_policy/CartPole-v0.json', 'r')
+json_file = open('../mac/learned_policy/CartPole-v1.json', 'r')
+
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # load weights into new model
 
 # def load_weights():
-loaded_model.load_weights('../mac/learned_policy/CartPole-v0.h5')
+# loaded_model.load_weights('../mac/learned_policy/CartPole-v0.h5')
+loaded_model.load_weights('../mac/learned_policy/CartPole-v1.h5')
+
 
 def expert_cartpole_policy(state):
 	s_size=len(state)

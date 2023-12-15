@@ -56,6 +56,8 @@ def main():
     nn_sa_file_name = "lunar_nn_sa"
     num_iterations = 300
     abstraction_net = make_nn_sa(mdp_demo_policy_dict, sess,params)
+    print(f"abstraction_net: type: {type(abstraction_net)}, num_abstract_states: {abstraction_net.num_abstract_states}")
+
     nn_sa = NNStateAbstr(abstraction_net)
 
     # =================
